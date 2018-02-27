@@ -1,0 +1,59 @@
+<html>
+<head>
+{% load static %}
+<link rel="stylesheet" type="text/css" href= "{% static 'css/style.css' %}" />
+<script type="text/javascript" src="{% static 'javascript/raphael.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascript/justgage.js' %}"></script>
+<script>
+window.onload=function(){
+	var gauge=new JustGage({
+	id: "gauge",
+	value:26 ,
+	min: 0,
+	max: 100,
+	title: "Temperature"
+});
+	var g1=new JustGage({
+	id: "g1",
+	value: 36 ,
+	min: 0,
+	max: 100,
+	title: "Humidity"
+});
+}
+</script>
+</head>
+<body>
+<meta http-equiv="refresh" content="5">
+<div id="nav"></br>
+	<div id="nav_wrapper"><br/>
+		<ul>
+			<li><a href="{% url 'ledblink:index' %}">Home</a></li>
+			<li><a href="#">PIR</a></li>
+			<li><a href="{% url 'ledblink:temp' %}">TEmperature</a></li>
+			<li><a href="{% url 'ledblink:led' %}">LED</a></li>
+			<li><a href="#">Buzzer</a></li>
+		</ul>
+	<div id="box">
+				<div id="gauge" class="gauge1">
+				</div>
+		</div>	
+		<div id="box1">
+				<div id="g1" class="gauge1">
+				</div>
+		<div id="box2">
+			<form action="" method="post">{%csrf_token%}
+<center><h1><font style="color:white ">{{result}}</font></h1></center><br/>
+<center><input type="submit" class="btn btn-info" name="door-open" value="door-open">
+<input type="submit" class="btn btn-info" name="door-close" value="door-close"></center>
+</form>
+	</div>
+		</div>	
+	</div>
+</div>
+
+
+
+
+</body>
+</html>
